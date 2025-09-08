@@ -10,12 +10,16 @@ jobs: # this defines which jobs are composed or are included in the workflow
   echo-goodbye:
     runs-on: ubuntu-latest
     steps: 
-      - name: Failed Step # this step is going to actually exit with a non-zero code
+    #  - name: Failed Step # this step is going to actually exit with a non-zero code
         # in bash this means whenever you exit with non-zero code it simply means that execution, that script ran failed
-        run: | # we can simulate that by simply having an exit ; | is necessary whenever we are defining a multi-line script
-          echo "I will fail"
-          exit 1
-      - name: Say GoodBye
-        run: echo "GoodBye!"
+    #    run: | # we can simulate that by simply having an exit ; | is necessary whenever we are defining a multi-line script
+    #      echo "I will fail"
+    #      exit 1
+    #  - name: Say GoodBye
+    #    run: echo "GoodBye!"
     # by default in GitHub actions , whenever a step fails, then the whole job is considered as failed 
     # and actually the whole workflow will be considered as failed.
+      - name: Success Step
+        run: |
+          echo "Yes , It is succeeded"
+          exit 0
