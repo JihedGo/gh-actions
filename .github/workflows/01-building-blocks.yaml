@@ -1,17 +1,21 @@
-name: 01 - Building Blocks
-on: push
-jobs:
-  echo-hello:
+name: 01 - Building Blocks # the name of the workflow
+on: push # on : it identifies the trigger of the workflow ; 
+         # push: this simply tells GitHub actions that whenever we push to the remote repository, we would then would like to execute this workflow
+jobs: # this defines which jobs are composed or are included in the workflow
+  echo-hello: 
     runs-on: ubuntu-latest
-    steps:
-      - name: Say hello
-        run: echo "Hello, world!"
+    steps: # this defines all the steps that are run by our job within the workflow
+      - name: Say hello # the name of the step
+        run: echo "Hello, world!" # 
   echo-goodbye:
     runs-on: ubuntu-latest
-    steps:
-      - name: Failed Step
-        run: |
+    steps: 
+      - name: Failed Step # this step is going to actually exit with a non-zero code
+        # in bash this means whenever you exit with non-zero code it simply means that execution, that script ran failed
+        run: | # we can simulate that by simply having an exit ; | is necessary whenever we are defining a multi-line script
           echo "I will fail"
           exit 1
       - name: Say GoodBye
         run: echo "GoodBye!"
+    # by default in GitHub actions , whenever a step fails, then the whole job is considered as failed 
+    # and actually the whole workflow will be considered as failed.
